@@ -1,4 +1,4 @@
-package company;
+package main;
 
 import com.sun.javafx.geom.Vec2d;
 
@@ -9,8 +9,8 @@ import java.awt.event.ActionListener;
 
 public class OpinionPanel extends JPanel implements ActionListener {
 
-    final int PANEL_WIDTH = 500;
-    final int PANEL_HEIGHT = 500;
+    final int PANEL_WIDTH = 1000;
+    final int PANEL_HEIGHT = 1000;
     double x = 0;
     double y = 0;
     Vec2d vel = new Vec2d(3.0, 5.8);

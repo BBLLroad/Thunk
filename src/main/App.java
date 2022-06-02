@@ -1,4 +1,4 @@
-package company;
+package main;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,6 +9,7 @@ public class App {
     private JButton button_msg;
     private JPanel panel_main;
     private JPanel panel_opinion;
+    private JPanel panel_sidebar;
 
     public App() {
         button_msg.addActionListener(new ActionListener() {
