@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class OpinionPanel extends JPanel implements ActionListener {
+public class CasePanel extends JPanel implements ActionListener {
 
     final int PANEL_WIDTH = 1000;
     final int PANEL_HEIGHT = 1000;
@@ -20,7 +20,7 @@ public class OpinionPanel extends JPanel implements ActionListener {
 
     Timer timer;
 
-    OpinionPanel() {
+    CasePanel() {
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setBackground(Color.BLACK);
         timer = new Timer(10, this); //updates animation every 10ms

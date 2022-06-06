@@ -35,6 +35,6 @@ public class App {
     }
 
     public void createUIComponents() {
-        panel_opinion = new OpinionPanel();
+        panel_opinion = new CasePanel();
     }
 }

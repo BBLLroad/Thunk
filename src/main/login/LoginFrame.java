@@ -14,16 +14,13 @@ public class LoginFrame extends JFrame implements ActionListener {
     JTextField userTextField = new JTextField();
     JPasswordField passwordField = new JPasswordField();
     JButton loginButton = new JButton("LOGIN");
-    JButton resetButton = new JButton("RESET");
     JCheckBox showPassword = new JCheckBox("Show Password");
-
 
     LoginFrame() {
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
-
     }
 
     public void setLayoutManager() {
@@ -37,9 +34,6 @@ public class LoginFrame extends JFrame implements ActionListener {
         passwordField.setBounds(150, 220, 150, 30);
         showPassword.setBounds(150, 250, 150, 30);
         loginButton.setBounds(50, 300, 100, 30);
-        resetButton.setBounds(200, 300, 100, 30);
-
-
     }
 
     public void addComponentsToContainer() {
@@ -49,15 +43,12 @@ public class LoginFrame extends JFrame implements ActionListener {
         container.add(passwordField);
         container.add(showPassword);
         container.add(loginButton);
-        container.add(resetButton);
     }
 
     public void addActionEvent() {
         loginButton.addActionListener(this);
-        resetButton.addActionListener(this);
         showPassword.addActionListener(this);
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -73,11 +64,6 @@ public class LoginFrame extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password");
             }
 
-        }
-        //Coding Part of RESET button
-        if (e.getSource() == resetButton) {
-            userTextField.setText("");
-            passwordField.setText("");
         }
         //Coding Part of showPassword JCheckBox
         if (e.getSource() == showPassword) {
