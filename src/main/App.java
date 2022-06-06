@@ -8,7 +8,7 @@ public class App {
 
     private JButton button_msg;
     private JPanel panel_main;
-    private JPanel panel_opinion;
+    private JPanel panel_case;
     private JPanel panel_sidebar;
 
     public App() {
@@ -35,6 +35,6 @@ public class App {
     }
 
     public void createUIComponents() {
-        panel_opinion = new CasePanel();
+        panel_case = new CasePanel();
     }
 }
