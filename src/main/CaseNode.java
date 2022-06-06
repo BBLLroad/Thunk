@@ -6,6 +6,7 @@ public class CaseNode {
         ASSUMPTION,
         DEFINITION,
         SLIDER,
+        ARCHIVED
     }
 
     public static final double SLIDER_MAX = 1.0;
@@ -21,4 +22,8 @@ public class CaseNode {
     public String word;
 
     public boolean is_moral;
+
+    public CaseNode() {
+        
+    }
 }
