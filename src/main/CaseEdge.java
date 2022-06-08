@@ -1,19 +1,23 @@
 package main;
 
-public class CaseEdge {
+import org.jgrapht.graph.DefaultWeightedEdge;
+
+public class CaseEdge extends DefaultWeightedEdge {
     public static final double CONSISTENCY_MAX = 1.0;
     public static final double CONSISTENCY_MIN = 0.0;
 
     public int source;
-    public int destination;
+    public int target;
 
-    public double consistency;
+    public double weight;
 
     public boolean is_to_ought; //denotes whether the connection ignores the is-ought problem
 
-    public CaseEdge(int source, int destination, double consistency) {
-        this.source = source;
-        this.destination = destination;
-        this.consistency = consistency;
+    public CaseEdge(int source, int target, double weight) {
+        //this.source = source;
+        //this.target = target;
+        this.weight = weight;
     }
+
+
 }

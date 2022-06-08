@@ -1,7 +1,5 @@
 package main;
 
-import com.sun.javafx.geom.Vec2d;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,7 +11,7 @@ public class CasePanel extends JPanel implements ActionListener {
     final int PANEL_HEIGHT = 1000;
     double x = 0;
     double y = 0;
-    Vec2d vel = new Vec2d(3.0, 5.8);
+    double []vel = {3.0, 5.8};
     int w = 100;
     int h = 100;
 
@@ -42,14 +40,14 @@ public class CasePanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         //animating rectangle
-        x += vel.x;
-        y += vel.y;
+        x += vel[0];
+        y += vel[1];
 
         if (x+w >= PANEL_WIDTH || x < 0) {
-            vel.x = -vel.x;
+            vel[0] = -vel[0];
         }
         if (y+h >= PANEL_HEIGHT || y < 0) {
-            vel.y = -vel.y;
+            vel[1] = -vel[1];
         }
 
         //TODO:: animation of opinion
