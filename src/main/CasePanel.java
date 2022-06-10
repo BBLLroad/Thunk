@@ -5,16 +5,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.mxgraph.swing.mxGraphComponent;
+import com.mxgraph.view.mxGraph;
+
 public class CasePanel extends JPanel implements ActionListener {
 
-    final int PANEL_WIDTH = 1000;
-    final int PANEL_HEIGHT = 1000;
+    final int PANEL_WIDTH = 800;
+    final int PANEL_HEIGHT = 800;
     double x = 0;
     double y = 0;
-    double []vel = {3.0, 5.8};
+    double[] vel = {2.0, 5.8};
     int w = 100;
     int h = 100;
-
 
     Timer timer;
 
@@ -23,6 +25,24 @@ public class CasePanel extends JPanel implements ActionListener {
         this.setBackground(Color.BLACK);
         timer = new Timer(10, this); //updates animation every 10ms
         timer.start();
+
+        mxGraph graph = new mxGraph();
+        Object parent = graph.getDefaultParent();
+
+        graph.getModel().beginUpdate();
+        try {
+            Object v1 = graph.insertVertex(parent, null, "Hello", 20, 20, 80, 30);
+            Object v2 = graph.insertVertex(parent, null, "World!", 240, 150, 80, 30);
+            graph.insertEdge(parent, null, "Edge", v1, v2);
+        } finally {
+            graph.getModel().endUpdate();
+        }
+
+        mxGraphComponent graphComponent = new mxGraphComponent(graph);
+        //graphComponent.setCenterPage(true);
+        graphComponent.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        //graphComponent.setAlignmentY(0.0f);
+        this.add(graphComponent);
     }
 
     public void paint(Graphics g) {

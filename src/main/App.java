@@ -4,15 +4,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.mxgraph.view.mxGraph;
-
 public class App {
 
     private JButton button_msg;
     private JPanel panel_main;
     private JPanel panel_case;
     private JPanel panel_sidebar;
-    private mxGraph case_graph;
 
     public App() {
         button_msg.addActionListener(new ActionListener() {
@@ -38,8 +35,6 @@ public class App {
     }
 
     public void createUIComponents() {
-
         panel_case = new CasePanel();
-        case_graph = new mxGraph();
     }
 }
