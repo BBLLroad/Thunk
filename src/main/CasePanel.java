@@ -14,7 +14,7 @@ public class CasePanel extends JPanel implements ActionListener {
     final int PANEL_HEIGHT = 800;
     double x = 0;
     double y = 0;
-    double[] vel = {2.0, 5.8};
+    double[] vel = {2.0, 5.0};
     int w = 100;
     int h = 100;
 
@@ -23,6 +23,8 @@ public class CasePanel extends JPanel implements ActionListener {
     CasePanel() {
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setBackground(Color.BLACK);
+        ((FlowLayout)this.getLayout()).setVgap(0);
+
         timer = new Timer(10, this); //updates animation every 10ms
         timer.start();
 
@@ -39,8 +41,8 @@ public class CasePanel extends JPanel implements ActionListener {
         }
 
         mxGraphComponent graphComponent = new mxGraphComponent(graph);
-        //graphComponent.setCenterPage(true);
-        graphComponent.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        graphComponent.setCenterPage(true);
+        graphComponent.setPreferredSize(new Dimension(PANEL_WIDTH/2, PANEL_HEIGHT/2));
         //graphComponent.setAlignmentY(0.0f);
         this.add(graphComponent);
     }

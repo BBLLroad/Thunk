@@ -1,5 +1,6 @@
 package main;
 
+import com.mxgraph.view.mxGraph;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.SimpleDirectedWeightedGraph;
 
@@ -8,11 +9,11 @@ import java.util.LinkedList;
 
 
 public class Case {
-    Graph<CaseNode, CaseEdge> g;
+    mxGraph graph = new mxGraph();
 
     public Case() {
-        g = new SimpleDirectedWeightedGraph<>(CaseEdge.class);
-        CaseNode default_node = new CaseNode("default content");
-        g.addVertex(default_node);
+        //graph = new SimpleDirectedWeightedGraph<>(CaseEdge.class);
+        //CaseNode default_node = new CaseNode("default content");
+        //graph.addVertex(default_node);
     }
 }
