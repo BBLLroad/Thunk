@@ -1,4 +1,4 @@
-package main.login;
+package main.demos.login;
 
 
 import javax.swing.*;
