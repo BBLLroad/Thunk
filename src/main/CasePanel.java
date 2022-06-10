@@ -4,8 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.mxgraph.swing.mxGraphComponent;
+import com.mxgraph.util.mxConstants;
 import com.mxgraph.view.mxGraph;
 
 public class CasePanel extends JPanel implements ActionListener {
@@ -33,9 +36,22 @@ public class CasePanel extends JPanel implements ActionListener {
 
         graph.getModel().beginUpdate();
         try {
-            Object v1 = graph.insertVertex(parent, null, "Hello", 20, 20, 80, 30);
-            Object v2 = graph.insertVertex(parent, null, "World!", 240, 150, 80, 30);
-            graph.insertEdge(parent, null, "Edge", v1, v2);
+            Object[] vs = new Object[2];
+            vs[0] = graph.insertVertex(parent, null, "Hello", 20, 20, 80, 30);
+            vs[1] = graph.insertVertex(parent, null, "World!", 240, 150, 80, 30);
+            graph.insertEdge(parent, null, "Edge", vs[0], vs[1]);
+
+            //graph.setCellStyle("defaultVertex;fillColor=blue;fontColor=white;", vs);
+            Map<String, Object> style = new HashMap<>();
+            style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
+            style.put(mxConstants.STYLE_OPACITY, 50);
+            style.put(mxConstants.STYLE_FONTCOLOR, "#774400");
+            graph.getStylesheet().putCellStyle("ROUNDED",style);
+
+            //graph.setCellsMovable(false);
+            graph.setCellsCloneable(false);
+            graph.setCellsResizable(false);
+            graph.setGridEnabled(false);
         } finally {
             graph.getModel().endUpdate();
         }
