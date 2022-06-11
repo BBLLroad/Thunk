@@ -1,5 +1,8 @@
 package main;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +24,12 @@ public class App {
     }
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel( new FlatDarkLaf() );
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize LaF" );
+        }
+
         JFrame frame = new JFrame("App");
 
 
