@@ -16,11 +16,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.mxgraph.io.mxCodec;
+import com.mxgraph.shape.mxImageShape;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.util.mxXmlUtils;
+import com.mxgraph.view.mxCellState;
 import com.mxgraph.view.mxGraph;
+import com.mxgraph.view.mxStylesheet;
 import org.json.JSONException;
 
 import org.json.JSONObject;
@@ -47,6 +50,7 @@ public class CasePanel extends JPanel implements ActionListener {
     Timer timer;
 
     CasePanel() {
+
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setBackground(Color.BLACK);
         ((FlowLayout)this.getLayout()).setVgap(0);
@@ -60,21 +64,36 @@ public class CasePanel extends JPanel implements ActionListener {
         graph.getModel().beginUpdate();
         try {
             Object[] vs = new Object[2];
-            vs[0] = graph.insertVertex(parent, null, "Hello", 20, 20, 80, 30);
-            vs[1] = graph.insertVertex(parent, null, "World!", 240, 150, 80, 30);
-            graph.insertEdge(parent, null, "Edge", vs[0], vs[1]);
 
+            mxImageShape imageShape = new mxImageShape();
+
+            vs[0] = graph.insertVertex(parent, null, null, 240, 150, 75, 75, "");
+            vs[1] = graph.insertVertex(parent, null, null, 240, 150, 75, 75, "");
+            graph.insertEdge(parent, null, "Edge", vs[0], vs[1]);
+            //Map<String, Object> vertexStyle = graph.getStylesheet().getDefaultVertexStyle();
+            //vertexStyle.replace(mxConstants.STYLE_IMAGE, "https://imgur.com/kqFNUzm");
             //graph.setCellStyle("defaultVertex;fillColor=blue;fontColor=white;", vs);
-            Map<String, Object> style = new HashMap<>();
+            /*Map<String, Object> style = new HashMap<>();
             style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
-            style.put(mxConstants.STYLE_OPACITY, 50);
+            style.put(mxConstants.STYLE_OPACITY, 100);
             style.put(mxConstants.STYLE_FONTCOLOR, "#774400");
-            graph.getStylesheet().putCellStyle("ROUNDED",style);
+            style.put(mxConstants.STYLE_IMAGE, "https://imgur.com/kqFNUzm");
+            graph.getStylesheet().putCellStyle("ROUNDED",style);*/
+            //graph.setStylesheet(style);
+
+            var stylesheet = graph.getStylesheet();
+            var vertexStyle = stylesheet.getDefaultVertexStyle();
+            vertexStyle.put(mxConstants.STYLE_SHAPE, mxConstants.STYLE_IMAGE);
+            vertexStyle.put(mxConstants.STYLE_IMAGE, "https://i.imgur.com/kqFNUzm.png;");
 
             //graph.setCellsMovable(false);
             graph.setCellsCloneable(false);
             graph.setCellsResizable(false);
             graph.setGridEnabled(false);
+
+            graph.getView().invalidate();
+            graph.getView().validate();
+
         } finally {
             graph.getModel().endUpdate();
         }
