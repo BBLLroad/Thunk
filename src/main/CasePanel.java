@@ -67,26 +67,28 @@ public class CasePanel extends JPanel implements ActionListener {
 
             mxImageShape imageShape = new mxImageShape();
 
-            vs[0] = graph.insertVertex(parent, null, null, 240, 150, 75, 75, "");
+            vs[0] = graph.insertVertex(parent, null, null, 140, 50, 75, 75, "");
             vs[1] = graph.insertVertex(parent, null, null, 240, 150, 75, 75, "");
-            graph.insertEdge(parent, null, "Edge", vs[0], vs[1]);
-            //Map<String, Object> vertexStyle = graph.getStylesheet().getDefaultVertexStyle();
-            //vertexStyle.replace(mxConstants.STYLE_IMAGE, "https://imgur.com/kqFNUzm");
-            //graph.setCellStyle("defaultVertex;fillColor=blue;fontColor=white;", vs);
-            /*Map<String, Object> style = new HashMap<>();
-            style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
-            style.put(mxConstants.STYLE_OPACITY, 100);
-            style.put(mxConstants.STYLE_FONTCOLOR, "#774400");
-            style.put(mxConstants.STYLE_IMAGE, "https://imgur.com/kqFNUzm");
-            graph.getStylesheet().putCellStyle("ROUNDED",style);*/
-            //graph.setStylesheet(style);
+            graph.insertEdge(parent, null, null, vs[0], vs[1]);
 
             var stylesheet = graph.getStylesheet();
             var vertexStyle = stylesheet.getDefaultVertexStyle();
             vertexStyle.put(mxConstants.STYLE_SHAPE, mxConstants.STYLE_IMAGE);
             vertexStyle.put(mxConstants.STYLE_IMAGE, "https://i.imgur.com/kqFNUzm.png;");
 
+
+            var edgeStyle = stylesheet.getDefaultEdgeStyle();
+            edgeStyle.put(mxConstants.STYLE_STROKEWIDTH, 10);
+            edgeStyle.put(mxConstants.STYLE_STROKEWIDTH, 10);
+            edgeStyle.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_ORTHOGONAL);
+            //edgeStyle.put(mxConstants.STYLE_EDGE, 20);
+            //edgeStyle.put(mxConstants.SHAPE_ARROW, mxConstants.ARROW_OVAL);
+
             //graph.setCellsMovable(false);
+            graph.setAllowDanglingEdges(false);
+            graph.setAllowLoops(false);
+            graph.setAllowNegativeCoordinates(false);
+            graph.setBorder(50);
             graph.setCellsCloneable(false);
             graph.setCellsResizable(false);
             graph.setGridEnabled(false);
