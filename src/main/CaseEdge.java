@@ -2,7 +2,9 @@ package main;
 
 import org.jgrapht.graph.DefaultWeightedEdge;
 
-public class CaseEdge extends DefaultWeightedEdge {
+import java.io.Serializable;
+
+public class CaseEdge implements Serializable {
     public static final double CONSISTENCY_MAX = 1.0;
     public static final double CONSISTENCY_MIN = 0.0;
 
@@ -23,7 +25,11 @@ public class CaseEdge extends DefaultWeightedEdge {
 
     @Override
     public String toString() {
-        return String.valueOf(weight);
+        if (GUIConstants.SHOW_EDGE_LABEL) {
+            return String.valueOf(weight);
+        } else {
+            return null;
+        }
     }
 
 

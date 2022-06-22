@@ -51,7 +51,6 @@ public class CasePanel extends JPanel implements ActionListener {
     Timer timer;
 
     CasePanel() {
-
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setBackground(Color.BLACK);
         ((FlowLayout)this.getLayout()).setVgap(0);
@@ -66,41 +65,12 @@ public class CasePanel extends JPanel implements ActionListener {
         try {
             Object[] vs = new Object[2];
 
-            mxImageShape imageShape = new mxImageShape();
-
             vs[0] = graph.insertVertex(parent, null, new CaseNode(), 140, 50, 75, 75, "");
-            System.out.println(vs[0].getClass());
             vs[1] = graph.insertVertex(parent, null, new CaseNode(), 240, 150, 75, 75, "");
             graph.insertEdge(parent, null, new CaseEdge(), vs[0], vs[1]);
 
-            var stylesheet = graph.getStylesheet();
-            var vertexStyle = stylesheet.getDefaultVertexStyle();
-            vertexStyle.put(mxConstants.STYLE_SHAPE, mxConstants.STYLE_IMAGE);
-            vertexStyle.put(mxConstants.STYLE_IMAGE, "https://i.imgur.com/LDF54nP.png;");
-            //vertexStyle.put(mxConstants.STYLE_IMAGE_BACKGROUND, "#000000");
-            vertexStyle.put(mxConstants.STYLE_GRADIENTCOLOR, "#555555");
-            vertexStyle.put(mxConstants.STYLE_INDICATOR_GRADIENTCOLOR, "#555555");
-            vertexStyle.put(mxConstants.STYLE_GRADIENT_DIRECTION, mxConstants.DIRECTION_EAST);
-
-            var edgeStyle = stylesheet.getDefaultEdgeStyle();
-            edgeStyle.put(mxConstants.STYLE_STROKEWIDTH, 10);
-            edgeStyle.put(mxConstants.STYLE_STROKEWIDTH, 10);
-            edgeStyle.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_ORTHOGONAL);
-            //edgeStyle.put(mxConstants.STYLE_EDGE, 20);
-            //edgeStyle.put(mxConstants.SHAPE_ARROW, mxConstants.ARROW_OVAL);
-
-            //graph.setCellsMovable(false);
-            graph.setAllowDanglingEdges(false);
-            graph.setAllowLoops(false);
-            graph.setAllowNegativeCoordinates(false);
-            graph.setBorder(50);
-            graph.setCellsCloneable(false);
-            graph.setCellsResizable(false);
-            graph.setGridEnabled(false);
-
-            graph.getView().invalidate();
-            graph.getView().validate();
-
+            initializeStylesheets();
+            initializeGraphAllowances();
         } finally {
             graph.getModel().endUpdate();
         }
@@ -112,6 +82,40 @@ public class CasePanel extends JPanel implements ActionListener {
         this.add(graphComponent);
     }
 
+    public void initializeStylesheets() {
+        var stylesheet = graph.getStylesheet();
+        var vertexStyle = stylesheet.getDefaultVertexStyle();
+        vertexStyle.put(mxConstants.STYLE_SHAPE, mxConstants.STYLE_IMAGE);
+        vertexStyle.put(mxConstants.STYLE_IMAGE, "https://i.imgur.com/LDF54nP.png;");
+        //vertexStyle.put(mxConstants.STYLE_IMAGE_BACKGROUND, "#000000");
+        vertexStyle.put(mxConstants.STYLE_GRADIENTCOLOR, "#555555");
+        vertexStyle.put(mxConstants.STYLE_INDICATOR_GRADIENTCOLOR, "#555555");
+        vertexStyle.put(mxConstants.STYLE_GRADIENT_DIRECTION, mxConstants.DIRECTION_EAST);
+        vertexStyle.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_BOTTOM);
+
+        var edgeStyle = stylesheet.getDefaultEdgeStyle();
+        edgeStyle.put(mxConstants.STYLE_STROKEWIDTH, 10);
+        edgeStyle.put(mxConstants.STYLE_STROKEWIDTH, 10);
+        edgeStyle.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_ORTHOGONAL);
+        edgeStyle.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_CENTER);
+        //edgeStyle.put(mxConstants.STYLE_EDGE, 20);
+        //edgeStyle.put(mxConstants.SHAPE_ARROW, mxConstants.ARROW_OVAL);
+    }
+
+    public void initializeGraphAllowances() {
+        //graph.setCellsMovable(false);
+        graph.setAllowDanglingEdges(false);
+        graph.setAllowLoops(false);
+        graph.setAllowNegativeCoordinates(false);
+        graph.setBorder(50);
+        graph.setCellsCloneable(false);
+        graph.setCellsResizable(false);
+        graph.setGridEnabled(false);
+
+        graph.getView().invalidate();
+        graph.getView().validate();
+    }
+
     public void paint(Graphics g) {
         super.paint(g); //paint background
 
@@ -120,8 +124,6 @@ public class CasePanel extends JPanel implements ActionListener {
         //drawing of rectangle
         g2d.setColor(new Color(123, 25, 250));
         g2d.fillRect((int)x, (int)y, w, h);
-
-        //TODO:: drawing of opinion
     }
 
     @Override

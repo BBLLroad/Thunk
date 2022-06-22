@@ -1,8 +1,9 @@
 package main;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class CaseNode {
+public class CaseNode implements Serializable {
     public enum NodeType {
         CLAUSE,
         ASSUMPTION,
@@ -44,7 +45,11 @@ public class CaseNode {
 
     @Override
     public String toString() {
-        return content;
+        if (GUIConstants.SHOW_NODE_LABEL) {
+            return content;
+        } else {
+            return null;
+        }
     }
 
     /*@Override
