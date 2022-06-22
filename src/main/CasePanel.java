@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.mxgraph.io.mxCodec;
+import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.shape.mxImageShape;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxConstants;
@@ -67,15 +68,19 @@ public class CasePanel extends JPanel implements ActionListener {
 
             mxImageShape imageShape = new mxImageShape();
 
-            vs[0] = graph.insertVertex(parent, null, null, 140, 50, 75, 75, "");
-            vs[1] = graph.insertVertex(parent, null, null, 240, 150, 75, 75, "");
-            graph.insertEdge(parent, null, null, vs[0], vs[1]);
+            vs[0] = graph.insertVertex(parent, null, new CaseNode(), 140, 50, 75, 75, "");
+            System.out.println(vs[0].getClass());
+            vs[1] = graph.insertVertex(parent, null, new CaseNode(), 240, 150, 75, 75, "");
+            graph.insertEdge(parent, null, new CaseEdge(), vs[0], vs[1]);
 
             var stylesheet = graph.getStylesheet();
             var vertexStyle = stylesheet.getDefaultVertexStyle();
             vertexStyle.put(mxConstants.STYLE_SHAPE, mxConstants.STYLE_IMAGE);
-            vertexStyle.put(mxConstants.STYLE_IMAGE, "https://i.imgur.com/kqFNUzm.png;");
-
+            vertexStyle.put(mxConstants.STYLE_IMAGE, "https://i.imgur.com/LDF54nP.png;");
+            //vertexStyle.put(mxConstants.STYLE_IMAGE_BACKGROUND, "#000000");
+            vertexStyle.put(mxConstants.STYLE_GRADIENTCOLOR, "#555555");
+            vertexStyle.put(mxConstants.STYLE_INDICATOR_GRADIENTCOLOR, "#555555");
+            vertexStyle.put(mxConstants.STYLE_GRADIENT_DIRECTION, mxConstants.DIRECTION_EAST);
 
             var edgeStyle = stylesheet.getDefaultEdgeStyle();
             edgeStyle.put(mxConstants.STYLE_STROKEWIDTH, 10);

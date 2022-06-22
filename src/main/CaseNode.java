@@ -25,6 +25,10 @@ public class CaseNode {
 
     public boolean is_moral;
 
+    public CaseNode() {
+        this.content = "default content";
+    }
+
     public CaseNode(String content) {
         this.content = content;
     }
@@ -36,6 +40,11 @@ public class CaseNode {
         this.word = word;
 
         this.is_moral = false; //TODO:: assess if newly-made node is a moral statement
+    }
+
+    @Override
+    public String toString() {
+        return content;
     }
 
     /*@Override
